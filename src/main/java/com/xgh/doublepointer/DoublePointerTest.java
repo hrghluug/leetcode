@@ -74,9 +74,9 @@ public class DoublePointerTest {
         if (s == null || s.length() <= 1) {
             return true;
         }
-        return isPalindRome(s.toCharArray(), 0, s.length() - 1, true);
+        return isPalindrome(s.toCharArray(), 0, s.length() - 1, true);
     }
-    public boolean isPalindRome(char[] arr, int l, int r, boolean flag) {
+    public boolean isPalindrome(char[] arr, int l, int r, boolean flag) {
         if (l >= r) {
             return true;
         }
@@ -89,7 +89,7 @@ public class DoublePointerTest {
                 r--;
             }
             if (flag) {
-                return isPalindRome(arr, l+1, r,false ) ||isPalindRome(arr, l, r-1,false );
+                return isPalindrome(arr, l+1, r,false ) ||isPalindrome(arr, l, r-1,false );
             }else {
                 return false;
             }
