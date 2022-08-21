@@ -5,30 +5,31 @@ import org.junit.Test;
 public class DoublePointerTest {
     @Test
     public void test() {
-        System.out.println(q680("eeccccbebaeeabebccceea"));
+        System.out.println(q680("ccccbebaeeabebccca"));
     }
 
-    public static int[] q167(int[] arr,int target){
-        int l=0;
-        int r=arr.length-1;
-        while (r>l){
-            if (arr[l]+arr[r]>target){
+    public static int[] q167(int[] arr, int target) {
+        int l = 0;
+        int r = arr.length - 1;
+        while (r > l) {
+            if (arr[l] + arr[r] > target) {
                 r--;
             }
-            if (arr[l]+arr[r]<target){
+            if (arr[l] + arr[r] < target) {
                 l++;
             }
-            if (arr[l]+arr[r]==target){
-                return new int[]{l+1,r+1};
+            if (arr[l] + arr[r] == target) {
+                return new int[]{l + 1, r + 1};
             }
         }
         return null;
     }
+
     public boolean q633(int c) {
         int l = 0;
         int r = (int) Math.sqrt(c);
         while (r >= l) {
-//            l*l+r*r<c 当数值在接近临界是可能导致越界
+            //            l*l+r*r<c 当数值在接近临界是可能导致越界
             if (l * l < c - r * r) {
                 l++;
             } else if (l * l > c - r * r) {
@@ -70,37 +71,27 @@ public class DoublePointerTest {
     }
 
     public boolean q680(String s) {
-        int l = 0, r = s.length() - 1;
-        int[] arr = {-1, -1,-1};
-        while (r >= l) {
-            while (s.charAt(l) == s.charAt(r)) {
-                if (r <= l) {
+        if (s == null || s.length() <= 1) {
+            return true;
+        }
+        return isPalindRome(s.toCharArray(), 0, s.length() - 1, true);
+    }
+    public boolean isPalindRome(char[] arr, int l, int r, boolean flag) {
+        if (l >= r) {
+            return true;
+        }
+        while (r > l) {
+            while (arr[l] == arr[r]) {
+                    if (l >= r) {
                     return true;
                 }
                 l++;
                 r--;
             }
-            if (arr[0] == -1||arr[1]==-1) {
-                if (s.charAt(l + 1) == s.charAt(r) && arr[2]==-1) {
-                    arr[0] = l;
-                    arr[1] = r;
-                    arr[2]=0;
-                    l++;
-                } else if (s.charAt(l) == s.charAt(r - 1)&&arr[2]!=-1) {
-                    arr[0] = l;
-                    arr[1] = r;
-                    r--;
-                } else {
-                    return false;
-                }
-            } else {
-                if (arr[1] != -1) {
-                    l = arr[0];
-                    r = arr[1];
-                    arr[1] = -1;
-                } else {
-                    return false;
-                }
+            if (flag) {
+                return isPalindRome(arr, l+1, r,false ) ||isPalindRome(arr, l, r-1,false );
+            }else {
+                return false;
             }
         }
         return false;
