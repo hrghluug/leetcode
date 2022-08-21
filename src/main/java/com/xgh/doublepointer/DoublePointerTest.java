@@ -1,6 +1,10 @@
 package com.xgh.doublepointer;
 
+import com.sun.org.apache.regexp.internal.RE;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class DoublePointerTest {
     @Test
@@ -76,26 +80,119 @@ public class DoublePointerTest {
         }
         return isPalindrome(s.toCharArray(), 0, s.length() - 1, true);
     }
+
     public boolean isPalindrome(char[] arr, int l, int r, boolean flag) {
         if (l >= r) {
             return true;
         }
-        while (r > l) {
-            while (arr[l] == arr[r]) {
-                    if (l >= r) {
-                    return true;
-                }
-                l++;
-                r--;
+        while (arr[l] == arr[r]) {
+            if (l >= r) {
+                return true;
             }
-            if (flag) {
-                return isPalindrome(arr, l+1, r,false ) ||isPalindrome(arr, l, r-1,false );
-            }else {
-                return false;
-            }
+            l++;
+            r--;
         }
-        return false;
+        if (flag) {
+            return isPalindrome(arr, l + 1, r, false) || isPalindrome(arr, l, r - 1, false);
+        } else {
+            return false;
+        }
     }
 
+
+
+    public void q88(int[] nums1, int m, int[] nums2, int n) {
+        for (int i = 0; i < n; i++) {
+            nums1[m + i] = nums2[i];
+        }
+        Arrays.sort(nums1);
+    }
+
+    public void quickSort(int[] arr, int l, int r) {
+        if (r - l < 1) {
+            return;
+        }
+        int temp;
+        int l1 = l, r1 = r;
+        int mid = arr[l];
+        while (r != l) {
+            if (arr[l + 1] >= mid) {
+                temp = arr[l + 1];
+                arr[l + 1] = arr[r];
+                arr[r] = temp;
+                r--;
+            } else {
+                temp = arr[l];
+                arr[l] = arr[l + 1];
+                arr[l + 1] = temp;
+                l++;
+            }
+        }
+        quickSort(arr, l1, l);
+        quickSort(arr, l + 1, r1);
+    }
+
+
+    class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
+
+    public boolean q141(ListNode head) {
+        if (head == null || head.next == null) {
+            return false;
+        }
+        ListNode fast = head.next.next, low = head.next;
+        while (fast != low) {
+            if (fast == null || fast.next == null) {
+                return false;
+            }
+            fast = fast.next.next;
+            low = low.next;
+        }
+        return true;
+    }
+
+    @Test
+    public void  adsaas(){
+        System.out.println(q524("abpcplea", Arrays.asList("ale", "apple", "monkey", "plea")));
+    }
+    public String q524(String s, List<String> dictionary) {
+        String bestAns = "";
+        mark:
+        for (String str : dictionary) {
+            int start = 0;
+            for (char c : str.toCharArray()) {
+                int idx = s.indexOf(c, start);
+                if (idx != -1) {
+                    start = idx + 1;
+                } else {
+                    continue mark;
+                }
+            }
+            if (bestAns.length() == str.length()) {
+                bestAns = dictionaryOrder(bestAns, str);
+            } else if (bestAns.length() < str.length()) {
+                bestAns = str;
+            }
+        }
+        return bestAns;
+    }
+
+    public String dictionaryOrder(String str, String s) {
+        for (int i = 0; i < s.length(); i++) {
+            if (str.charAt(i) < s.charAt(i)) {
+                return str;
+            } else if (str.charAt(i) > s.charAt(i)) {
+                return s;
+            }
+        }
+        return s;
+    }
 
 }
