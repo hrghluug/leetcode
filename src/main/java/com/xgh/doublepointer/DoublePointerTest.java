@@ -8,6 +8,22 @@ public class DoublePointerTest {
         System.out.println(q680("eeccccbebaeeabebccceea"));
     }
 
+    public static int[] q167(int[] arr,int target){
+        int l=0;
+        int r=arr.length-1;
+        while (r>l){
+            if (arr[l]+arr[r]>target){
+                r--;
+            }
+            if (arr[l]+arr[r]<target){
+                l++;
+            }
+            if (arr[l]+arr[r]==target){
+                return new int[]{l+1,r+1};
+            }
+        }
+        return null;
+    }
     public boolean q633(int c) {
         int l = 0;
         int r = (int) Math.sqrt(c);
