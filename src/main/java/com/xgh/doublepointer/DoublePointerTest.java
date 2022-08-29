@@ -1,6 +1,6 @@
 package com.xgh.doublepointer;
 
-import com.sun.org.apache.regexp.internal.RE;
+import com.xgh.doublepointer.Entity.ListNode;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -133,15 +133,6 @@ public class DoublePointerTest {
     }
 
 
-    class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
 
     public boolean q141(ListNode head) {
         if (head == null || head.next == null) {
