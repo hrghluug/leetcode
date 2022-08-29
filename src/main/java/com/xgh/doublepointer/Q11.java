@@ -7,7 +7,7 @@ import org.junit.Test;
  */
 public class Q11 {
     @Test
-    public void maina() {
+    public void test() {
         int[] ints = {1, 2, 3, 4, 5, 25, 24, 3, 4};
         System.out.println(maxArea(ints));
     }

@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.Arrays;
 
 /**
+ * @link https://leetcode.cn/problems/remove-duplicates-from-sorted-array-ii/
  * @author xgh 2022/8/29
  */
 public class Q80 {
@@ -22,6 +23,6 @@ public class Q80 {
            }
            nums[p++]=nums[i];
         }
-        return p-1;
+        return p;
     }
 }
