@@ -3,13 +3,11 @@ package com.xgh.doublepointer;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 /**
  * @author xgh 2022/8/21
  */
-public class SortTest {
+public class Q215 {
     @Test
     public void adasd() {
         _q215(new int[]{3, 2, 1, 5, 6, 4}, 2);
@@ -106,35 +104,6 @@ public class SortTest {
         }
     }
 
-    @Test
-    public void aasd() {
-        q347(new int[]{1, 1, 1, 2, 2, 3}, 1);
-    }
 
-    public int[] q347(int[] nums, int k) {
-        HashMap<Integer, AtomicInteger> map = new HashMap<>();
-        for (int num : nums) {
-            map.computeIfAbsent(num, key -> new AtomicInteger()).incrementAndGet();
-        }
-        PriorityQueue<Map.Entry<Integer, AtomicInteger>> queue = new PriorityQueue<>(k, Comparator.comparingInt(o -> o.getValue().get()));
-        map.entrySet().forEach(
-                entry->{
-                    if (queue.size()<k) {
-                        queue.add(entry);
-                    }else {
-                        if (queue.peek().getValue().get()<entry.getValue().get()){
-                            queue.poll();
-                            queue.add(entry);
-                        }
-                    }
-                }
-        );
-        List<Integer> integerList = queue.stream().map(entry -> entry.getKey()).collect(Collectors.toList());
-        int[] ints = new int[integerList.size()];
-        for (int i = 0; i < integerList.size(); i++) {
-            ints[i]=integerList.get(i);
-        }
-        return ints;
-    }
 
 }
