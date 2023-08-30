@@ -1,6 +1,5 @@
 package com.xgh.doublepointer;
 
-import com.sun.xml.internal.messaging.saaj.soap.impl.HeaderElementImpl;
 import org.junit.Test;
 
 import java.util.Arrays;
